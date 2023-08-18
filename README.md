@@ -1,5 +1,6 @@
-# بازآرایی کد (Code Refactoring)
-#### آزمایش چهارم درس آز مهندسی نرم افزار 
+# آشنایی با نحوه پروفایل برنامه (Profiling)
+
+#### آزمایش پنج درس آز مهندسی نرم افزار 
 ---
 ### گزارش آزمایش:
 بخش اول:
@@ -45,3 +46,57 @@
 
 
 همان طور که در عکس ها بالا هم قابل مشاهده می باشد استفاده از منابع به شدت کاهش یافته است و همین طور برنامه دچار مشکلی نشده و به درستی اجرا می شود 
+## بخش دوم
+اکمنون تابع توان را به نحوه زیر پیاده سازی کردیم
+```.java
+import java.util.Scanner;
+
+public class Test {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Press base number: ");
+        int i = scanner.nextInt();
+        System.out.println("Press power number: ");
+        int j = scanner.nextInt();
+
+        power(i, j);
+    }
+
+        public static void power(int a, int b) {
+        int result = 1;
+        for (int i =1; i < b ; i++) {
+            result *= a;
+        }
+        System.out.println("result: " + result);
+    }
+
+}
+```
+با استفاده از این کد مقدار 2 به توان 30 را محاسبه میکنیم و نتیجه پروفایلینگ آن به شکل زیر است.
+![image](https://github.com/amirzgh/se-lab-5/assets/59579792/ef80366b-5c5a-4d65-8154-869dc51b9b2e)
+![image](https://github.com/amirzgh/se-lab-5/assets/59579792/3dad1684-2efc-435f-b9c0-02755de9d0aa)
+که همانظور که انتظار میرفت نتیجه مطلوبی نداشت از همین روی بار دیگر این قسمت را مینویسیم این بار با استفاده از کتابخانه Math
+```.java
+import java.util.Scanner;
+
+public class Test {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Press base number: ");
+        int i = scanner.nextInt();
+        System.out.println("Press power number: ");
+        int j = scanner.nextInt();
+
+        power(i, j);
+    }
+
+    public static void power(int a, int b) {
+        double result = Math.pow(a, b);
+        System.out.println("result: " + result);
+    }
+}
+```
+و بار دیگر نتیجه پروفایلینگ آن را بررسی میکنیم
+![image](https://github.com/amirzgh/se-lab-5/assets/59579792/49efd356-0097-4f97-b52a-76d46eae3de5)
+![image](https://github.com/amirzgh/se-lab-5/assets/59579792/146a9edd-6b6d-4ac4-979a-398b994f9f24)
+همانطور که مشاهده میشود بهبود چشم گیری در نتیجه پروفایلینگ این قسمت از کد به وجود آمد.
